@@ -80,7 +80,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 return extras.getString("preferences");
             }
         }
-        return "0000000000";
+        return "000000000000";
     }
 
     /**

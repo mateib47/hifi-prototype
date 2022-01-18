@@ -12,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class PreferencesActivity extends AppCompatActivity {
 
+    CheckBox minimum;
+    CheckBox recommended;
     CheckBox milk;
     CheckBox egg;
     CheckBox peanut;
@@ -41,7 +43,8 @@ public class PreferencesActivity extends AppCompatActivity {
         vegan = (CheckBox) findViewById(R.id.Vegan);
         vegetarian = (CheckBox) findViewById(R.id.Vegetarian);
         gluten = (CheckBox) findViewById(R.id.Gluten);
-
+        minimum = (CheckBox) findViewById(R.id.Minimum);
+        recommended = (CheckBox) findViewById(R.id.Recommended);
         apply = (Button) findViewById(R.id.Apply);
 
         apply.setOnClickListener(new View.OnClickListener() {
@@ -99,6 +102,12 @@ public class PreferencesActivity extends AppCompatActivity {
 
         if (preferenceSelection.charAt(9) == '1') {
             gluten.setChecked(true);
+        }
+        if (preferenceSelection.charAt(10) == '1') {
+            minimum.setChecked(true);
+        }
+        if (preferenceSelection.charAt(11) == '1') {
+            recommended.setChecked(true);
         }
     }
 
@@ -160,6 +169,16 @@ public class PreferencesActivity extends AppCompatActivity {
         }
 
         if (gluten.isChecked()) {
+            sb.append('1');
+        } else {
+            sb.append('0');
+        }
+        if (minimum.isChecked()) {
+            sb.append('1');
+        } else {
+            sb.append('0');
+        }
+        if (recommended.isChecked()) {
             sb.append('1');
         } else {
             sb.append('0');

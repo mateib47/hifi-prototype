@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/background_light"
+    android:background="@drawable/bg"
     tools:context="com.google.android.gms.samples.vision.ocrreader.AfterCaptureActivity">
 
 
@@ -35,7 +35,7 @@
             android:background="@drawable/rounded_btn"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:text="Take Another Photo" />
+            android:text="Scan another item" />
 
         <TextView
             android:id="@+id/TitleText"
@@ -52,8 +52,8 @@
             android:id="@+id/BadIngredientsBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:orientation="vertical">
 
@@ -67,7 +67,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="9dp"
             android:background="@drawable/rounded_btn"
-            android:text="More details" />
+            android:text="Text to Speech" />
 
         <RatingBar
             android:id="@+id/ratingBar"
@@ -79,8 +79,9 @@
             android:layout_marginEnd="62dp"
             android:layout_marginRight="62dp"
             android:layout_marginBottom="134dp"
-            android:background="#F1ECEC"
+            android:background="@android:drawable/screen_background_light_transparent"
             android:numStars="5"
+            android:progressTint="#EFD985"
             android:rating="4.5" />
 
 

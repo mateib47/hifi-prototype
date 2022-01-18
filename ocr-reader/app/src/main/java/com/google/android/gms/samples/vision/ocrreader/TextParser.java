@@ -12,9 +12,16 @@ public class TextParser {
     public ArrayList<String> allVegan;
     public ArrayList<String> allVegetarian;
     public ArrayList<String> allGluten;
+    public ArrayList<String> allRecommended;
+    public ArrayList<String> allMinimum;
 
     public TextParser() {
         this.allAllergens = this.fillInAllergens();
+        this.allMinimum = (new ArrayList(Arrays.asList("alcohol", "coffee", "caffeine", "taurine", "swordfish", "marlin", "shark", "vodka", "wiskey",
+                "absint", "sushi", "redbull", "mcdonalds", "kfc", "burgerking")));
+        this.allRecommended = (new ArrayList(Arrays.asList("alcohol", "coffee", "caffeine", "taurine", "swordfish", "marlin", "shark", "vodka", "wiskey",
+                "absint", "sushi", "redbull", "mcdonalds", "kfc", "burgerking", "tuna", "chocolate", "cocoa", "tuna",
+                "peppermint", "garlic", "parsley", "sage", "soda", "chips", "fries", "burgers", "pizza", "fried")));
         this.allLactose = (new ArrayList(Arrays.asList("milk", "butter", "buttermilk", "casein", "cheese", "cream",
                 "curds", "lactose", "lactulose", "lactate", "custard", "yogurt")));
         this.allVegan = (new ArrayList(Arrays.asList("milk", "butter", "buttermilk", "casein", "cheese", "cream",
@@ -32,7 +39,7 @@ public class TextParser {
     public static void main(String[] args) {
         TextParser tt = new TextParser();
 
-        tt.setUserPreferences("1111111111");
+        tt.setUserPreferences("111111111111");
         ArrayList<String> ii = new ArrayList<String>(Arrays.asList(" hoiusdfhium,, oifdshj hif  1.Gelatingt"));
         ArrayList<ArrayList> done = tt.checkAllergens(ii);
         ArrayList<String> done2 = tt.checkLactose(ii);
@@ -308,10 +315,62 @@ public class TextParser {
         return returnList;
     }
 
+    public ArrayList checkMinimum(ArrayList<String> ingredients) {
+        ArrayList returnList = new ArrayList();
+        String returnString = new String();
+        if (this.userAllergens.get(10).equals("1")) {
+            returnList.add("Warning: As a breastfeeding mom, we strongly suggest you to avoid eating this. It contains...");
+            returnString += "Warning: As a breastfeeding mom, we strongly suggest you to avoid eating this. It contains...";
+            ArrayList<String> allIngredients = this.processInput(ingredients);
+            for (String ingredient : allIngredients) {
+                for (String item : this.allMinimum) {
+                    if (ingredient.contains(item)) {
+                        returnList.add(item);
+                        returnString += " " + item;
+                    }
+                }
+            }
+            if (returnList.size() <= 1) {
+                returnList = new ArrayList();
+                returnString = new String();
+            }
+        }
+        if (returnString.length() > 0) {
+            returnList.add(returnString);
+        }
+        return returnList;
+    }
+
+    public ArrayList checkRecommended(ArrayList<String> ingredients) {
+        ArrayList returnList = new ArrayList();
+        String returnString = new String();
+        if (this.userAllergens.get(11).equals("1")) {
+            returnList.add("Warning: As a breastfeeding mom, we suggest you to avoid eating this. It contains...");
+            returnString += "Warning: As a breastfeeding mom, we suggest you to avoid eating this. It contains...";
+            ArrayList<String> allIngredients = this.processInput(ingredients);
+            for (String ingredient : allIngredients) {
+                for (String item : this.allRecommended) {
+                    if (ingredient.contains(item)) {
+                        returnList.add(item);
+                        returnString += " " + item;
+                    }
+                }
+            }
+            if (returnList.size() <= 1) {
+                returnList = new ArrayList();
+                returnString = new String();
+            }
+        }
+        if (returnString.length() > 0) {
+            returnList.add(returnString);
+        }
+        return returnList;
+    }
+
     public void setUserPreferences(String input) {
         this.userAllergens.clear();
         Log.i("cake", input);
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 12; i++) {
             this.userAllergens.add(Character.toString(input.charAt(i)));
         }
     }

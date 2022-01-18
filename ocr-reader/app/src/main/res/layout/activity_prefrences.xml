@@ -136,6 +136,50 @@
             android:gravity="center_horizontal">
 
             <CheckBox
+                android:id="@+id/Minimum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:buttonTint="@android:color/black"
+                android:fontFamily="sans-serif"
+                android:gravity="left|center"
+                android:text="@string/minimum_choice"
+                android:textColor="@color/parsapurple"
+                android:textSize="20sp" />
+
+            <CheckBox
+                android:id="@+id/Recommended"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:buttonTint="@android:color/black"
+                android:fontFamily="sans-serif"
+                android:text="@string/recommended_choice"
+                android:textColor="@color/parsapurple"
+                android:textSize="20sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="12dp"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/restrictions"
+                android:textColor="@color/parsapurple"
+                android:textSize="20sp" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal">
+
+            <CheckBox
                 android:id="@+id/Egg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

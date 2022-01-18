@@ -13,12 +13,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.google.android.gms.samples.vision.ocrreader.ocr.OcrCaptureActivity;
 
 import java.util.ArrayList;
 import java.util.Locale;
+import java.util.Random;
 
 public class AfterCaptureActivity extends AppCompatActivity {
 
@@ -34,6 +36,7 @@ public class AfterCaptureActivity extends AppCompatActivity {
     String preferences;
     TextToSpeech ts;
     StringBuilder speechText = new StringBuilder();
+    RatingBar ratingBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +52,7 @@ public class AfterCaptureActivity extends AppCompatActivity {
         titleText = (TextView) findViewById(R.id.TitleText);
         badIngredientsBox = (LinearLayout) findViewById(R.id.BadIngredientsBox);
         textToSpeechButton = (Button) findViewById(R.id.TextToSpeech);
+        ratingBar = (RatingBar) findViewById(R.id.ratingBar);
 
         parser.setUserPreferences(preferences);
 
@@ -75,15 +79,21 @@ public class AfterCaptureActivity extends AppCompatActivity {
         ArrayList<String> veganItems = parser.checkVegan(itemList);
         ArrayList<String> vegetarianItems = parser.checkVegaterian(itemList);
         ArrayList<String> glutenItems = parser.checkGluten(itemList);
+        ArrayList<String> minimumItems = parser.checkMinimum(itemList);
+        ArrayList<String> recommendedItems = parser.checkRecommended(itemList);
+
 
         Log.i("size allergerns", "" + allergenItems.size());
         Log.i("size lactoseItems", "" + lactoseItems.size());
         Log.i("size veganItems", "" + veganItems.size());
         Log.i("size vegetarianItems", "" + vegetarianItems.size());
         Log.i("size glutenItems", "" + glutenItems.size());
+        Log.i("size minimumItems", "" + minimumItems.size());
+        Log.i("size recommendedItems", "" + recommendedItems.size());
 
 
-        if (noBadIngredients(allergenItems, lactoseItems, veganItems, vegetarianItems, glutenItems)) {
+
+        if (noBadIngredients(allergenItems, lactoseItems, veganItems, vegetarianItems, glutenItems, minimumItems, recommendedItems)) {
             Log.i("OK", "its a");
             speechText.append("The ingredients are okay.");
             icon.setImageDrawable(check);
@@ -114,6 +124,12 @@ public class AfterCaptureActivity extends AppCompatActivity {
             if (glutenItems.size() > 0) {
                 displayNegative(glutenItems);
             }
+            if (minimumItems.size() > 0) {
+                displayNegative(minimumItems);
+            }
+            if (recommendedItems.size() > 0) {
+                displayNegative(recommendedItems);
+            }
 
         }
 
@@ -141,9 +157,14 @@ public class AfterCaptureActivity extends AppCompatActivity {
                                      ArrayList<String> b,
                                      ArrayList<String> c,
                                      ArrayList<String> d,
-                                     ArrayList<String> e) {
+                                     ArrayList<String> e,
+                                     ArrayList<String> f,
+                                     ArrayList<String> g) {
+        Random random = new Random();
+        float rating = random.nextInt(5 - 3) + 3;
+        ratingBar.setRating(rating);
 
-        return (a.size() == 0) && (b.size() == 0) && (c.size() == 0) && (d.size() == 0) && (e.size() == 0);
+        return (a.size() == 0) && (b.size() == 0) && (c.size() == 0) && (d.size() == 0) && (e.size() == 0) && (f.size() == 0) && (g.size() == 0);
     }
 
     public void onBackPressed() {
@@ -178,7 +199,9 @@ public class AfterCaptureActivity extends AppCompatActivity {
                 badIngredientsBox.addView(text);
             }
         }
-
+        Random random = new Random();
+        float rating = random.nextInt(3 - 0);
+        ratingBar.setRating(rating);
 
     }
 
@@ -199,6 +222,9 @@ public class AfterCaptureActivity extends AppCompatActivity {
         }
         speechText.append(result.get(result.size() - 1));
         speechText.append(" ");
+        Random random = new Random();
+        float rating = random.nextInt(3 );
+        ratingBar.setRating(rating);
     }
 
 
