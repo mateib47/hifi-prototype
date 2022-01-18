@@ -20,6 +20,7 @@
             android:value="ocr" />
 
         <activity
+            android:exported="true"
             android:name=".MainActivity"
             android:label="@string/title_activity_main">
             <intent-filter>
