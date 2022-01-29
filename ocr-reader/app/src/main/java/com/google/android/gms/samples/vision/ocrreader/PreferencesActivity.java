@@ -3,17 +3,21 @@ package com.google.android.gms.samples.vision.ocrreader;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class PreferencesActivity extends AppCompatActivity {
 
-    CheckBox minimum;
-    CheckBox recommended;
+    RadioButton minimum;
+    RadioButton recommended;
     CheckBox milk;
     CheckBox egg;
     CheckBox peanut;
@@ -43,8 +47,8 @@ public class PreferencesActivity extends AppCompatActivity {
         vegan = (CheckBox) findViewById(R.id.Vegan);
         vegetarian = (CheckBox) findViewById(R.id.Vegetarian);
         gluten = (CheckBox) findViewById(R.id.Gluten);
-        minimum = (CheckBox) findViewById(R.id.Minimum);
-        recommended = (CheckBox) findViewById(R.id.Recommended);
+        minimum = (RadioButton) findViewById(R.id.Minimum);
+        recommended = (RadioButton) findViewById(R.id.Recommended);
         apply = (Button) findViewById(R.id.Apply);
 
         apply.setOnClickListener(new View.OnClickListener() {
@@ -57,10 +61,29 @@ public class PreferencesActivity extends AppCompatActivity {
                 Toast toast = Toast.makeText(context, text, duration);
                 toast.show();
                 preferenceSelection = getPreferenceString();
+                onBackPressed();
             }
+
         });
 
         checkPreviousPreferences();
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
+    }
+
+    public void finishSession(){
+        this.finish();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void checkPreviousPreferences() {

@@ -13,24 +13,25 @@
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="18dp"
         android:fontFamily="sans-serif"
         android:gravity="center_horizontal"
         android:text="@string/basic_info_label"
         android:textColor="@color/parsayellow"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:tooltipText="This is the information of the mother" />
+
 
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
         android:layout_below="@+id/textView2"
-        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
         android:layout_centerVertical="false"
-        android:layout_marginTop="60dp">
+        android:layout_marginTop="82dp">
 
         <TableRow
             android:layout_width="match_parent"
@@ -130,34 +131,37 @@
         android:layout_centerInParent="false"
         android:paddingBottom="80dp">
 
-        <TableRow
+        <RadioGroup
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_horizontal">
+            android:layout_height="59dp"
+            android:layout_marginTop="12dp"
+            android:checkedButton="@id/Recommended"
 
-            <CheckBox
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <RadioButton
                 android:id="@+id/Minimum"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:buttonTint="@android:color/black"
+                android:buttonTint="@color/parsapurple"
                 android:fontFamily="sans-serif"
-                android:gravity="left|center"
                 android:text="@string/minimum_choice"
                 android:textColor="@color/parsapurple"
                 android:textSize="20sp" />
 
-            <CheckBox
+            <RadioButton
                 android:id="@+id/Recommended"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:buttonTint="@android:color/black"
+                android:buttonTint="@color/parsapurple"
                 android:fontFamily="sans-serif"
                 android:text="@string/recommended_choice"
                 android:textColor="@color/parsapurple"
                 android:textSize="20sp" />
-        </TableRow>
+        </RadioGroup>
 
         <TableRow
             android:layout_width="match_parent"
@@ -169,8 +173,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/restrictions"
-                android:textColor="@color/parsapurple"
-                android:textSize="20sp" />
+                android:textColor="@color/parsayellow"
+                android:textSize="20sp"
+                android:gravity="center_horizontal"/>
 
         </TableRow>
 

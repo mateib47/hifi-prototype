@@ -7,14 +7,14 @@
     <string name="title_activity_main">Mom Food Checker</string>
     <string name="parsafood_logo_descr">Mom Food Checker Logo</string>
     <string name="ocr_header">Click &quot;Detect Text&quot; to detect text</string>
-    <string name="scan_ingredients">Scan Items</string>
+    <string name="scan_ingredients">Click to Scan Items</string>
     <string name="set_allergens">Preferences</string>
     <string name="enter_prefs">Tell me about yourself.</string>
     <string name="age_label">Age</string>
     <string name="weight_label">Weight (kg)</string>
     <string name="height_label">Height (cm)</string>
-    <string name="basic_info_label">Basic Information</string>
-    <string name="diet_label">Dietary Options</string>
+    <string name="basic_info_label">Mom\'s Information</string>
+    <string name="diet_label">Mom-Diet Options</string>
     <string name="egg_choice">Egg</string>
     <string name="milk_choice">Milk</string>
     <string name="peanut_choice">Peanut</string>
@@ -30,5 +30,5 @@
     <string name="ocr_error">"Error reading text: %1$s"</string>
     <string name="minimum_choice">Minimum</string>
     <string name="recommended_choice">Recommended</string>
-    <string name="restrictions">Restrictions</string>
+    <string name="restrictions">Dietary Restrictions</string>
 </resources>
