@@ -9,15 +9,20 @@ import android.speech.tts.TextToSpeech;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.text.Html;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RatingBar;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.google.android.gms.samples.vision.ocrreader.ocr.OcrCaptureActivity;
@@ -40,7 +45,8 @@ public class AfterCaptureActivity extends AppCompatActivity {
     String preferences;
     TextToSpeech ts;
     StringBuilder speechText = new StringBuilder();
-    RatingBar ratingBar;
+    SeekBar seekBar;
+    TextView mBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +62,12 @@ public class AfterCaptureActivity extends AppCompatActivity {
         titleText = (TextView) findViewById(R.id.TitleText);
         badIngredientsBox = (LinearLayout) findViewById(R.id.BadIngredientsBox);
         textToSpeechButton = (Button) findViewById(R.id.TextToSpeech);
-        ratingBar = (RatingBar) findViewById(R.id.ratingBar);
+        seekBar = (SeekBar) findViewById(R.id.seekBar);
+        seekBar.setEnabled(false);
+        mBox = findViewById(R.id.textView3);
+        mBox.setText(Html.fromHtml("<b>" + "Healthy-Meter" + "</b>" +  "<br />" +
+                "<small>" + "This shows how healthy the product is for the mother" + "</small>"));
+
 
         parser.setUserPreferences(preferences);
 
@@ -176,11 +187,14 @@ public class AfterCaptureActivity extends AppCompatActivity {
                                      ArrayList<String> e,
                                      ArrayList<String> f,
                                      ArrayList<String> g) {
-        Random random = new Random();
-        float rating = random.nextInt(5 - 3) + 3;
-        ratingBar.setRating(rating);
+        seekBar.setProgress(randomRating(50, 100));
 
         return (a.size() == 0) && (b.size() == 0) && (c.size() == 0) && (d.size() == 0) && (e.size() == 0) && (f.size() == 0) && (g.size() == 0);
+    }
+
+    public int randomRating(int min, int max){
+        Random random = new Random();
+        return random.nextInt((max - min) + 1) + min;
     }
 
     public void onBackPressed() {
@@ -212,13 +226,11 @@ public class AfterCaptureActivity extends AppCompatActivity {
                 text.setTextColor(Color.rgb(209, 89, 98));
                 text.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
                 text.setGravity(Gravity.CENTER_HORIZONTAL);
+                text.setTextSize(18);
                 badIngredientsBox.addView(text);
             }
         }
-        Random random = new Random();
-        float rating = random.nextInt(3 - 0);
-        ratingBar.setRating(rating);
-
+        seekBar.setProgress(randomRating(1,50));
     }
 
     private void displayNegative(ArrayList<String> result) {
@@ -233,14 +245,13 @@ public class AfterCaptureActivity extends AppCompatActivity {
             text.setText(result.get(i));
             text.setTextColor(Color.rgb(209, 89, 98));
             text.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            text.setTextSize(18);
             text.setGravity(Gravity.CENTER_HORIZONTAL);
             badIngredientsBox.addView(text);
         }
         speechText.append(result.get(result.size() - 1));
         speechText.append(" ");
-        Random random = new Random();
-        float rating = random.nextInt(3 );
-        ratingBar.setRating(rating);
+        seekBar.setProgress(randomRating(1,50));
     }
 
 
